@@ -26,8 +26,8 @@ export default function PositionedMenu() {
         <MenuIcon />
       </IconButton>
       <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
+        id="main-menu"
+        aria-labelledby="menu-positioned-button"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

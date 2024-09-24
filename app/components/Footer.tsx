@@ -7,7 +7,7 @@ import { IconButton, Typography } from "@mui/material";
 const Footer = () => {
   const actualYear = new Date().getFullYear();
   return (
-    <footer className="py-4 ">
+    <footer className="py-4 bg-yellow-400 text-zinc-800">
       <div className="flex flex-col justify-center items-center gap-2">
         <Typography
           variant="h5"

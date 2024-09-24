@@ -9,7 +9,10 @@ import PositionedMenu from "./menu/Menu";
 export default function Header() {
   return (
     <Box>
-      <AppBar position="static" className="h-16 ">
+      <AppBar
+        position="static"
+        className="h-16 text-zinc-800 bg-yellow-200 border-b-[1px] border-zinc-950/30 shadow-sm"
+      >
         <Toolbar className="h-full">
           <Typography
             variant="h6"
