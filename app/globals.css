@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #f4f4f4;
-  --foreground: #171717;
-  --titleColor: #facc15;
+    --background: #f4f4f4;
+    /* --foreground: #171717; */
+    --titleColor: #facc15;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        /* --background: #0a0a0a; */
+        --foreground: #ededed;
+    }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 br {
-  margin-bottom: 0.3rem;
+    margin-bottom: 0.3rem;
 }
 
 h1,
@@ -31,27 +31,27 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--titleColor);
+    color: var(--titleColor);
 }
 
 h1 {
-  font-size: 2.8rem;
+    font-size: 2.8rem;
 }
 
 h2 {
-  font-size: 2rem;
+    font-size: 2rem;
 }
 
 p {
-  font-size: 1.1rem;
+    font-size: 1.1rem;
 }
 
 ol > li::marker {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+    .text-balance {
+        text-wrap: balance;
+    }
 }
