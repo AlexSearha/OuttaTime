@@ -3,14 +3,20 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { mergeString } from "@/utils/stringUtils";
 
 export default function PositionedMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const router = useRouter();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const textContent = mergeString(event.target.textContent);
+
+    router.push(`/${textContent}`);
     setAnchorEl(null);
   };
 
@@ -40,9 +46,9 @@ export default function PositionedMenu() {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleClose}>Accueil</MenuItem>
-        <MenuItem onClick={handleClose}>Démarrer</MenuItem>
-        <MenuItem onClick={handleClose}>A Propos</MenuItem>
+        <MenuItem onClick={(event) => handleClose(event)}>Accueil</MenuItem>
+        <MenuItem onClick={(event) => handleClose(event)}>Jouer</MenuItem>
+        <MenuItem onClick={(event) => handleClose(event)}>A Propos</MenuItem>
       </Menu>
     </div>
   );
