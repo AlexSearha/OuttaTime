@@ -18,7 +18,7 @@ export default function TimeFunction() {
                     <Button
                         variant="contained"
                         color="primary"
-                        className="w-auto h-14 rounded"
+                        className="w-44 h-14 rounded font-bold bg-green-600 text-white transition-colors hover:bg-green-800"
                         onClick={() => setIsStarted(!isStarted)}
                     >
                         Demarrer
@@ -28,7 +28,7 @@ export default function TimeFunction() {
                     <Button
                         variant="contained"
                         color="primary"
-                        className="w-auto h-14 rounded"
+                        className="w-44 h-14 rounded font-bold "
                         onClick={() => setIsPaused(!isPaused)}
                     >
                         {isPaused ? "Reprendre" : "Pause"}
