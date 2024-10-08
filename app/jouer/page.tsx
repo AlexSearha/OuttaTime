@@ -1,3 +1,5 @@
+import TimeFunction from "../components/TimeFunction"
+
 export default function Jouer() {
-  return <h1>My Page</h1>;
+    return <TimeFunction />
 }

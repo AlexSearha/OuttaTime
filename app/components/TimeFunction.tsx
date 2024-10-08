@@ -1,29 +1,38 @@
 "use client"
 import useTimer from "@/hooks/useTimer"
+import { Button } from "@mui/material"
 import moment from "moment"
 
 export default function TimeFunction() {
-    const { time, isPaused, setIsPaused, isFinished } = useTimer({ timeToSet: 30 })
+    const { time, isPaused, setIsPaused, isFinished, setIsStarted, isStarted } = useTimer({
+        timeToSet: 30,
+        started: false,
+    })
     return (
         <div className="flex flex-col gap-2">
-            <div id="timer" className="text-5xl">
+            <div id="timer" className="text-7xl">
                 {moment.utc(time * 1000).format("ss")}
             </div>
             <div>
-                {!isFinished ? (
-                    <button
-                        className="bg-white w-20 h-14 border-2 border-black rounded text-black"
+                {!isStarted && (
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className="w-auto h-14 rounded"
+                        onClick={() => setIsStarted(!isStarted)}
+                    >
+                        Demarrer
+                    </Button>
+                )}
+                {isStarted && (
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className="w-auto h-14 rounded"
                         onClick={() => setIsPaused(!isPaused)}
                     >
                         {isPaused ? "Reprendre" : "Pause"}
-                    </button>
-                ) : (
-                    <button
-                        className="bg-white w-20 h-14 border-2 border-black rounded text-black"
-                        onClick={() => setIsPaused(!isPaused)}
-                    >
-                        Suivant
-                    </button>
+                    </Button>
                 )}
             </div>
         </div>
