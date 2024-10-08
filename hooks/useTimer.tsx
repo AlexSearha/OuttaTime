@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { CountdownProps } from "../app/@types/types"
+import { CountdownProps } from "../@types/types"
 
 export default function useTimer({ timeToSet, started = true, reset = false }: CountdownProps) {
     const [time, setTime] = useState(timeToSet)
