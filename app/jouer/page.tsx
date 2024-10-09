@@ -82,6 +82,7 @@ export default function Jouer() {
                                     Nom de l&apos;équipe n°{index + 1}
                                 </InputLabel>
                                 <Input
+                                    required
                                     id={`team-name-${index}`}
                                     value={teamNames[index] || ""}
                                     onChange={(e) => {
