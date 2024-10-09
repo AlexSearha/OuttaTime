@@ -1,10 +1,11 @@
 "use client"
-import { FormControl, FormGroup, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
-import { useState } from "react"
+import { Button, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
+import { FormEvent, useState } from "react"
 
 export default function Jouer() {
     const [playersNumber, setPlayersNumber] = useState("")
     const [teams, setTeams] = useState("")
+    const [teamNames, setTeamNames] = useState<string[]>([])
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         setPlayersNumber(event.target.value)
@@ -24,9 +25,16 @@ export default function Jouer() {
         return possibleTeams
     }
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        console.log("playersNumber: ", playersNumber)
+        console.log("teams: ", teams)
+        console.log("teamNames: ", teamNames)
+    }
+
     return (
         <>
-            <FormGroup className="flex flex-col gap-2">
+            <form className="flex flex-col gap-2" onSubmit={(e) => handleSubmit(e)}>
                 <FormControl fullWidth>
                     <InputLabel htmlFor="players-number">Nombre de joueurs</InputLabel>
                     <Select
@@ -65,7 +73,31 @@ export default function Jouer() {
                         </FormControl>
                     </>
                 )}
-            </FormGroup>
+
+                {teams !== "" && (
+                    <>
+                        {Array.from({ length: parseInt(teams) }, (_, i) => i + 1).map((team, index) => (
+                            <FormControl fullWidth key={index}>
+                                <InputLabel htmlFor={`team-name-${index}`}>
+                                    Nom de l&apos;équipe n°{index + 1}
+                                </InputLabel>
+                                <Input
+                                    id={`team-name-${index}`}
+                                    value={teamNames[index] || ""}
+                                    onChange={(e) => {
+                                        const updatedTeamNames = [...teamNames]
+                                        updatedTeamNames[index] = e.target.value
+                                        setTeamNames(updatedTeamNames)
+                                    }}
+                                />
+                            </FormControl>
+                        ))}
+                    </>
+                )}
+                <Button variant="contained" color="primary" type="submit" className="font-bold">
+                    Envoyer
+                </Button>
+            </form>
         </>
     )
 }
