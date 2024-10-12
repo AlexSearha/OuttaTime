@@ -1,11 +1,12 @@
 "use client"
-import { Button, FormControl, Input, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material"
+import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from "@mui/material"
 import { FormEvent, useState } from "react"
 
 export default function Jouer() {
     const [playersNumber, setPlayersNumber] = useState("")
     const [teams, setTeams] = useState("")
     const [teamNames, setTeamNames] = useState<string[]>([])
+    const [isError, setIsError] = useState<boolean[]>([])
 
     const handleChange = (event: SelectChangeEvent<string>) => {
         setPlayersNumber(event.target.value)
@@ -27,9 +28,17 @@ export default function Jouer() {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log("playersNumber: ", playersNumber)
-        console.log("teams: ", teams)
-        console.log("teamNames: ", teamNames)
+
+        const errors = teamNames.map((name) => name.trim() === "")
+
+        setIsError(errors)
+
+        // Si tous les champs sont remplis, continuer (sinon arrêter ici)
+        if (errors.every((error) => !error)) {
+            console.log("playersNumber: ", playersNumber)
+            console.log("teams: ", teams)
+            console.log("teamNames: ", teamNames)
+        }
     }
 
     return (
@@ -78,11 +87,8 @@ export default function Jouer() {
                     <>
                         {Array.from({ length: parseInt(teams) }, (_, i) => i + 1).map((team, index) => (
                             <FormControl fullWidth key={index}>
-                                <InputLabel htmlFor={`team-name-${index}`}>
-                                    Nom de l&apos;équipe n°{index + 1}
-                                </InputLabel>
-                                <Input
-                                    required
+                                <TextField
+                                    label={`Nom de l'équipe ${team}`}
                                     id={`team-name-${index}`}
                                     value={teamNames[index] || ""}
                                     onChange={(e) => {
@@ -90,6 +96,8 @@ export default function Jouer() {
                                         updatedTeamNames[index] = e.target.value
                                         setTeamNames(updatedTeamNames)
                                     }}
+                                    error={isError[index] || false}
+                                    helperText={isError[index] ? "Ce champ est requis" : ""}
                                 />
                             </FormControl>
                         ))}
