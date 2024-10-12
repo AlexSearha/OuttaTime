@@ -33,7 +33,6 @@ export default function Jouer() {
 
         setIsError(errors)
 
-        // Si tous les champs sont remplis, continuer (sinon arrêter ici)
         if (errors.every((error) => !error)) {
             console.log("playersNumber: ", playersNumber)
             console.log("teams: ", teams)
