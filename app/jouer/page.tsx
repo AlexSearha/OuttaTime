@@ -45,7 +45,7 @@ export default function Jouer() {
                         onChange={(event) => handleChange(event)}
                     >
                         {/* Générer uniquement des nombres pairs */}
-                        {Array.from({ length: 6 }, (_, i) => (i + 1) * 2).map((value) => (
+                        {Array.from({ length: 5 }, (_, i) => (i + 2) * 2).map((value) => (
                             <MenuItem key={value} value={value}>
                                 {value}
                             </MenuItem>
